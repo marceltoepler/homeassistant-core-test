@@ -3,8 +3,6 @@
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import ConfigType
 
-DOMAIN = "hello_domain"
-
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """Test."""
