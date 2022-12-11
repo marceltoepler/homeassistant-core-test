@@ -479,6 +479,8 @@ class ShellyRpcCoordinator(DataUpdateCoordinator):
                 return
             self.connected = False
             self._async_run_disconnected_events()
+        # Try to reconnect right away
+        await self.async_request_refresh()
 
     @callback
     def _async_run_disconnected_events(self) -> None:
@@ -564,7 +566,8 @@ class ShellyRpcCoordinator(DataUpdateCoordinator):
 
     async def shutdown(self) -> None:
         """Shutdown the coordinator."""
-        await async_stop_scanner(self.device)
+        if self.device.connected:
+            await async_stop_scanner(self.device)
         await self.device.shutdown()
         await self._async_disconnected()
 

@@ -14,12 +14,11 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
     CONF_HOST,
     CURRENCY_EURO,
-    ELECTRIC_CURRENT_AMPERE,
     ELECTRIC_POTENTIAL_VOLT,
     ENERGY_KILO_WATT_HOUR,
     POWER_WATT,
-    VOLUME_CUBIC_METERS,
-    VOLUME_LITERS,
+    UnitOfElectricCurrent,
+    UnitOfVolume,
 )
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType
@@ -42,7 +41,7 @@ SENSORS_SMARTMETER: tuple[SensorEntityDescription, ...] = (
         key="gas_consumption",
         name="Gas Consumption",
         entity_registry_enabled_default=False,
-        native_unit_of_measurement=VOLUME_CUBIC_METERS,
+        native_unit_of_measurement=UnitOfVolume.CUBIC_METERS,
         device_class=SensorDeviceClass.GAS,
         state_class=SensorStateClass.TOTAL_INCREASING,
     ),
@@ -120,21 +119,21 @@ SENSORS_PHASES: tuple[SensorEntityDescription, ...] = (
     SensorEntityDescription(
         key="current_phase_l1",
         name="Current Phase L1",
-        native_unit_of_measurement=ELECTRIC_CURRENT_AMPERE,
+        native_unit_of_measurement=UnitOfElectricCurrent.AMPERE,
         device_class=SensorDeviceClass.CURRENT,
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SensorEntityDescription(
         key="current_phase_l2",
         name="Current Phase L2",
-        native_unit_of_measurement=ELECTRIC_CURRENT_AMPERE,
+        native_unit_of_measurement=UnitOfElectricCurrent.AMPERE,
         device_class=SensorDeviceClass.CURRENT,
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SensorEntityDescription(
         key="current_phase_l3",
         name="Current Phase L3",
-        native_unit_of_measurement=ELECTRIC_CURRENT_AMPERE,
+        native_unit_of_measurement=UnitOfElectricCurrent.AMPERE,
         device_class=SensorDeviceClass.CURRENT,
         state_class=SensorStateClass.MEASUREMENT,
     ),
@@ -188,7 +187,7 @@ SENSORS_SETTINGS: tuple[SensorEntityDescription, ...] = (
         name="Gas Consumption Price",
         entity_registry_enabled_default=False,
         state_class=SensorStateClass.MEASUREMENT,
-        native_unit_of_measurement=f"{CURRENCY_EURO}/{VOLUME_CUBIC_METERS}",
+        native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfVolume.CUBIC_METERS}",
     ),
     SensorEntityDescription(
         key="energy_consumption_price_low",
@@ -221,14 +220,14 @@ SENSORS_WATERMETER: tuple[SensorEntityDescription, ...] = (
         key="consumption_day",
         name="Consumption Day",
         state_class=SensorStateClass.TOTAL_INCREASING,
-        native_unit_of_measurement=VOLUME_LITERS,
+        native_unit_of_measurement=UnitOfVolume.LITERS,
         device_class=SensorDeviceClass.WATER,
     ),
     SensorEntityDescription(
         key="consumption_total",
         name="Consumption Total",
         state_class=SensorStateClass.TOTAL_INCREASING,
-        native_unit_of_measurement=VOLUME_CUBIC_METERS,
+        native_unit_of_measurement=UnitOfVolume.CUBIC_METERS,
         device_class=SensorDeviceClass.WATER,
     ),
     SensorEntityDescription(
