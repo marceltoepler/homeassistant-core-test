@@ -1,0 +1,12 @@
+{
+  "domain": "hello_domain",
+  "name": "hello_name",
+  "integration_type": "device",
+  "documentation": "https://example.com/documentation",
+  "issue_tracker": "https://example.com/issue_tracker",
+  "dependencies": [],
+  "codeowners": ["@marceltoepler"],
+  "config_flow": false,
+  "requirements": [],
+  "iot_class": "local_polling"
+}
